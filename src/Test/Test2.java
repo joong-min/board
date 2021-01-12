@@ -6,6 +6,7 @@ public class Test2 {
 	public static void main(String[] args) {
 	    
 	    Scanner scan = new Scanner(System.in);
+	    System.out.println("새로운 작업!!");
 
 	    System.out.println("이름을 입력해주세요:");
 	    String name = scan.next();
