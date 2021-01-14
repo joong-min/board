@@ -17,7 +17,7 @@ public class Test3 {
 			}
 			
 			if(str.equals("add")) {
-				System.out.println("게시물 추가 기능 구현");
+				System.out.println("게시물 추가 기능 구현!!!!");
 			}
 		}
 
