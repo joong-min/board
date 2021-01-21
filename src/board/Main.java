@@ -1,6 +1,8 @@
 package board;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -11,9 +13,13 @@ public class Main {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		Article article1 = new Article(1, "제목1", "내용1");
-		Article article2 = new Article(2, "제목2", "내용2");
-		Article article3 = new Article(3, "제목3", "내용3");
+		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy.MM.dd HH:ss");
+		Date time = new Date();
+		String time1 = format1.format(time);
+		
+		Article article1 = new Article(1, "제목1", "내용1", time1, 0, "익명");
+		Article article2 = new Article(2, "제목2", "내용2", time1, 0, "익명");
+		Article article3 = new Article(3, "제목3", "내용3", time1, 0, "익명");
 		
 		articles.add(article1);
 		articles.add(article2);
@@ -31,13 +37,15 @@ public class Main {
 
 			else if (str.equals("add")) {
 				
+
+				
 				System.out.println("게시물 제목을 입력해주세요 :");
 				String title = sc.next();
 				
 				System.out.println("게시물 내용을 입력해주세요 :");
 				String body = sc.next();
 				
-				Article article = new Article(lastId, title, body);
+				Article article = new Article(lastId, title, body, time1, 0, "익명");
 				lastId++;
 				
 				articles.add(article);
@@ -45,14 +53,9 @@ public class Main {
 				System.out.println("게시물이 등록되었습니다.");
 
 			}
-			
+			//
 			else if(str.equals("list")) {
-				for(int i = 0; i < articles.size(); i++) {
-					Article article = articles.get(i);
-					System.out.println("번호 : " + article.id ); // 번호X, article
-					System.out.println("제목 : " + article.title);
-					System.out.println("===============================");
-				}
+				printArticles(articles);
 			}
 			
 			else if(str.equals("update")) {
@@ -67,7 +70,7 @@ public class Main {
 					System.out.println("내용 : ");
 					String body = sc.next();	
 					
-					Article article = new Article(id, title, body);
+					Article article = new Article(id, title, body, time1,  0, "익명");
 					
 					articles.set(targetIdx, article);
 
@@ -99,16 +102,39 @@ public class Main {
 				
 				if(targetIdx != -1) {
 					Article article = articles.get(targetIdx);
+					int cnt = article.getHit() + 1;
+					article.setHit(cnt);
 					
-					System.out.println("====== " + article.id + "번 게시물 ======");
-					System.out.println("번호 : " + article.id);
-					System.out.println("제목 : " + article.title);
-					System.out.println("내용 : " + article.body);
+					System.out.println("====== " + article.getId() + "번 게시물 ======");
+					System.out.println("번호 : " + article.getId());
+					System.out.println("제목 : " + article.getTitle());
+					System.out.println("내용 : " + article.getBody());
+					System.out.println("작성자 : " + article.getNickname());
+					System.out.println("조회수 : " + article.getHit());
+					System.out.println("등록날짜 : " + article.getRegDate());
 					System.out.println("========================");
 					
 				} else {
 					System.out.println("없는 게시물입니다.");
 				}
+			} else if(str.equals("search")) {
+				System.out.println("검색 키워드를 입력해주세요 :");
+				String keyword = sc.next();
+				
+				ArrayList<Article> searchedArticles = new ArrayList<>();
+				
+				for(int i = 0; i < articles.size(); i++) {
+					Article article = articles.get(i);
+					String title = article.getTitle();
+
+					if(title.contains(keyword)) {
+						searchedArticles.add(article);
+					}
+				}
+				
+				printArticles(searchedArticles);
+				
+				
 			}
 		}
 
@@ -118,12 +144,28 @@ public class Main {
 		int targetIdx = -1; 
 		
 		for(int i = 0; i < articles.size(); i++) {
-			if(articles.get(i).id == id) {
+			if(articles.get(i).getId() == id) {
 				targetIdx = i;
 			}
 		}
 		
 		return targetIdx;
+	}
+	
+	public static void printArticles(ArrayList<Article> articles) {
+		
+		for(int i = 0; i < articles.size(); i++) {
+			Article article = articles.get(i);
+			String date = article.getRegDate();
+			date = date.substring(0, 10);
+
+			System.out.println("번호 : " + article.getId()); // 번호X, article
+			System.out.println("제목 : " + article.getTitle());
+			System.out.println("작성자 : " + article.getNickname());
+			System.out.println("조회수 : " + article.getHit());
+			System.out.println("등록날짜 : " + date);
+			System.out.println("===============================");
+		}
 	}
 	
 	
