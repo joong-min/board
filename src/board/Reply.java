@@ -2,11 +2,11 @@ package board;
 
 public class Reply {
 	
-	private int id; // 데이터 식별
-	private int parentId; // 부모글(원글) 번호
-	private String body; // 댓글 내용
-	private String nickname; // 댓글 작성자
-	private String regDate; // 데이터 추적
+	private int id; 
+	private int parentId;
+	private String body; 
+	private String nickname; 
+	private String regDate; 
 	
 	public Reply(int id, String body, String nickname, String regDate, int parentId) {
 		super();

@@ -2,12 +2,12 @@ package board;
 
 public class Article {
 	
-	private int id;// 번호
-	private String title;// 제목
-	private String body;// 내용
-	private String regDate; // 등록날짜
-	private int hit; // 조회수
-	private String nickname; // 작성자
+	private int id;
+	private String title;
+	private String body;
+	private String regDate; 
+	private int hit; 
+	private String nickname; 
 	
 	public Article(int id, String title, String body, String regDate, int hit, String nickname) {
 		super();
@@ -19,7 +19,7 @@ public class Article {
 		this.nickname = nickname;
 	}
 
-	// 게터, 세터
+	
 	
 	
 	public void setId(int id) {

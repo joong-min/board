@@ -25,7 +25,7 @@ public class Main {
 		articles.add(article3);
 
 		while (true) {
-			System.out.println("명령어 입력해주세요 :");
+			System.out.println("명령어를 입력해주세요 :");
 			String str = sc.next();
 			if (str.equals("exit")) {
 				System.out.println("프로그램이 종료됩니다.");
@@ -50,7 +50,7 @@ public class Main {
 	// =======================================================================
 	private static void searchArticles() {
 		
-		System.out.println("검색 항목을 선택해주세요 (1. 제목, 2. 내용, 3. 제목 + 내용, 4. 작성자) :");
+		System.out.println("검색 항목을 선택해주세요 (1.제목, 2.내용, 3.제목 + 내용, 4. 작성자) :");
 		int targetFlag = sc.nextInt();
 		System.out.println("검색 키워드를 입력해주세요 :");
 		String keyword = sc.next();
@@ -124,7 +124,7 @@ public class Main {
 		
 		
 		while(true) {
-			System.out.println("상세보기 기능을 선택해주세요(1. 댓글 등록, 2. 좋아요, 3. 수정, 4. 삭제, 5. 목록으로) : ");
+			System.out.println("상세보기 기능을 선택해주세요(1.댓글 등록, 2.좋아요, 3.수정, 4.삭제, 5.목록으로 ) : ");
 			int cmd = sc.nextInt();
 			
 			if(cmd == 1) {
@@ -156,7 +156,7 @@ public class Main {
 	// =======================================================================
 	private static void deleteArticle() {
 
-		System.out.println("삭제할 게시물 번호 :");
+		System.out.println("삭제가 완료되었습니다 :");
 		int id = sc.nextInt();
 		int targetIdx = getIndexByArticleId(id);
 
@@ -183,7 +183,7 @@ public class Main {
 			System.out.println("내용 : ");
 			String body = sc.next();
 
-			Article article = new Article(id, title, body, getCurrentDate(), 0, "익명");
+			Article article = new Article(id, title, body, getCurrentDate(), 0, "�씡紐�");
 
 			articles.set(targetIdx, article);
 
@@ -234,7 +234,7 @@ public class Main {
 			String date = article.getRegDate();
 			date = date.substring(0, 10);
 
-			System.out.println("번호 : " + article.getId()); // 번호X, article
+			System.out.println("번호 : " + article.getId()); // 踰덊샇X, article
 			System.out.println("제목 : " + article.getTitle());
 			System.out.println("작성자 : " + article.getNickname());
 			System.out.println("조회수 : " + article.getHit());
