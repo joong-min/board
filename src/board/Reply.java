@@ -3,16 +3,26 @@ package board;
 public class Reply {
 	
 	private int id; // 데이터 식별
+	private int parentId; // 부모글(원글) 번호
 	private String body; // 댓글 내용
 	private String nickname; // 댓글 작성자
 	private String regDate; // 데이터 추적
 	
-	public Reply(int id, String body, String nickname, String regDate) {
+	public Reply(int id, String body, String nickname, String regDate, int parentId) {
 		super();
 		this.id = id;
 		this.body = body;
 		this.nickname = nickname;
 		this.regDate = regDate;
+		this.parentId = parentId;
+	}
+
+	public int getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
 	}
 
 	public int getId() {

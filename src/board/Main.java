@@ -111,9 +111,11 @@ public class Main {
 		System.out.println("==========댓글==========");
 		for(int i = 0; i < replies.size(); i++) {
 			Reply reply = replies.get(i);
-			System.out.println("내용 : " + reply.getBody());
-			System.out.println("작성자 : " + reply.getNickname());
-			System.out.println("작성일 : " + reply.getRegDate());
+			if(article.getId() == reply.getParentId()) {
+				System.out.println("내용 : " + reply.getBody());
+				System.out.println("작성자 : " + reply.getNickname());
+				System.out.println("작성일 : " + reply.getRegDate());				
+			}
 		}
 		
 	}
@@ -130,7 +132,7 @@ public class Main {
 				System.out.println("댓글 내용을 입력해주세요 : ");
 			    String replyBody = sc.next();
 			    
-			    Reply reply = new Reply(replyLastId, replyBody, "익명", getCurrentDate());
+			    Reply reply = new Reply(replyLastId, replyBody, "익명", getCurrentDate(), article.getId());
 			    replies.add(reply);
 			    
 				System.out.println("댓글이 등록되었습니다.");
